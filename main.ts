@@ -582,7 +582,7 @@ namespace DateTimeClass {
     //% blockId=datetimeclass_mydatetoage
     //% block =" $this get age from birthdate by $idate in current date"
     //% this.shadow=variables_get this.defl=myDateTime
-    //% idate.shadow=_dateshadow
+    //% idate.shadow=datetimeclass_dateshadow
     //% weight=14
     public myDateToAge(idate: dates) {
         let odate = this.myDatetime
