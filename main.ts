@@ -424,9 +424,9 @@ namespace DateTimeClass {
 
     /**
      * Set the time using 24-hour format. 
-     * @param hour the hour (0-23)
-     * @param minute the minute (0-59)
-     * @param second the second (0-59)
+     * hour the hour (0-23)
+     * minute the minute (0-59)
+     * second the second (0-59)
      */
     //% blockid=datetimeclass_set24hrtime
     //% block=" $this set time from 24-hour time $times"
@@ -446,9 +446,9 @@ namespace DateTimeClass {
 
     /**
      * Set the date
-     * @param month the month 1-12
-     * @param day the day of the month 1-31
-     * @param the year 2020-2050
+     * month the month 1-12
+     * day the day of the month 1-31
+     * the year 2020-2050
      */
     //% blockid=datetimeclass_setdate
     //% block=" $this set date to $dates"
@@ -468,10 +468,10 @@ namespace DateTimeClass {
 
     /**
      * Set the time using am/pm format
-     * @param hour the hour (1-12)
-     * @param minute the minute (0-59)
-     * @param second the second (0-59)
-     * @param ampm morning or night
+     * hour the hour (1-12)
+     * minute the minute (0-59)
+     * second the second (0-59)
+     * ampm morning or night
      */
     //% block=datetimeclass_settime
     //% block=" $this set time to $times $ampm"
