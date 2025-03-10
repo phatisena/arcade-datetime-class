@@ -221,9 +221,9 @@ namespace DateTimeClass {
     // ********* Time Calculation / Management ************************
     export class DatetimeObject {
         public myDatetime: DateTime; public myDate: Date
-        private startYear: Year; private timeToSetpoint: SecondsCount; private cpuTimeAtSetpoint: SecondsCount
-        private lastUpdateMinute: Minute;private lastUpdateHour: Hour; private lastUpdateDay: Day
-        protected TIME_AND_DATE_EVENT: number;protected TIME_AND_DATE_NEWMINUTE: number;protected TIME_AND_DATE_NEWHOUR: number; protected TIME_AND_DATE_NEWDAY: number
+        public startYear: Year; public timeToSetpoint: SecondsCount; public cpuTimeAtSetpoint: SecondsCount
+        public lastUpdateMinute: Minute;public lastUpdateHour: Hour; public lastUpdateDay: Day
+        public TIME_AND_DATE_EVENT: number; public TIME_AND_DATE_NEWMINUTE: number; public TIME_AND_DATE_NEWHOUR: number; public TIME_AND_DATE_NEWDAY: number
 
         constructor() {
             this.startYear = 0, this.timeToSetpoint = 0, this.cpuTimeAtSetpoint = 0
@@ -233,7 +233,7 @@ namespace DateTimeClass {
             this.run()
         }
 
-        protected run() {
+        public run() {
         /* 
         This ensures that "time" is checked periodically and event handlers are called.  
         */
@@ -260,7 +260,7 @@ namespace DateTimeClass {
         })
     }
 
-        protected isLeapYear(y: Year): boolean {
+    public isLeapYear(y: Year): boolean {
         // The /400 and /100 rules don't come into play until 2400 and 2300 or 0100.  We can ignore them here
         // Here's the code for accurate handling of leap years:
         return (y % 400 == 0 || (y % 100 != 0 && y % 4 == 0))
@@ -271,7 +271,7 @@ namespace DateTimeClass {
 
 
     // Returns a MonthDay with from a DayOfYear and given Year
-    protected dayOfYearToMonthAndDay(d: DayOfYear, y: Year): MonthDay {
+    public dayOfYearToMonthAndDay(d: DayOfYear, y: Year): MonthDay {
         // If it's after Feb in a leap year, adjust
         if (this.isLeapYear(y)) {
             if (d == 60) {  // Leap Day!
@@ -291,13 +291,13 @@ namespace DateTimeClass {
         return { month: -1, day: -1 }
     }
 
-    protected secondsSoFarForYear(m: Month, d: Day, y: Year, hh: Hour, mm: Minute, ss: Second): SecondsCount {
+    public secondsSoFarForYear(m: Month, d: Day, y: Year, hh: Hour, mm: Minute, ss: Second): SecondsCount {
         // ((((Complete Days * 24hrs/ day)+complete hours)*60min/ hr)+complete minutes)* 60s/ min + complete seconds
         // Yay Horner's Rule!:
         return (((this.dateToDayOfYear(datevalue(m, d, y)) - 1) * 24 + hh) * 60 + mm) * 60 + ss
     }
 
-    protected dateSinceFor(dateSince: SecondsCount): Date {
+    public dateSinceFor(dateSince: SecondsCount): Date {
         // Find elapsed years by counting up from start year and subtracting off complete years
         let startDateCount = dateSince
         let y = 1
@@ -322,7 +322,7 @@ namespace DateTimeClass {
         return { month: ddmm.month, day: ddmm.day, year: y, dayOfYear: daysFromStartOfYear }
     }
 
-    protected timeFor(cpuTime: SecondsCount): DateTime {
+    public timeFor(cpuTime: SecondsCount): DateTime {
         const deltaTime = cpuTime - this.cpuTimeAtSetpoint
         let sSinceStartOfYear = this.timeToSetpoint + deltaTime, uSince = sSinceStartOfYear
         // Find elapsed years by counting up from start year and subtracting off complete years
@@ -358,7 +358,7 @@ namespace DateTimeClass {
         return { month: ddmm.month, day: ddmm.day, year: y, hour: hoursFromStartOfDay, minute: minutesFromStartOfHour, second: secondsSinceStartOfMinute, dayOfYear: daysFromStartOfYear }
     }
 
-    protected timeSinceFor(timeSince: SecondsCount): DateTime {
+    public timeSinceFor(timeSince: SecondsCount): DateTime {
         let sSinceStartOfYear = timeSince
         // Find elapsed years by counting up from start year and subtracting off complete years
         let y = 1
@@ -394,12 +394,12 @@ namespace DateTimeClass {
     }
 
     //% shim=datetimeclass::cpuTimeInSeconds
-    protected cpuTimeInSeconds(): uint32 {
+    public cpuTimeInSeconds(): uint32 {
         return Math.idiv(game.runtime(), 1000)
     }
 
     // ********* Misc. Utility Functions for formatting ************************
-    protected leftZeroPadTo(inp: number, digits: number) {
+    public leftZeroPadTo(inp: number, digits: number) {
         let value = inp + ""
         while (value.length < digits) {
             value = "0" + value
@@ -409,12 +409,12 @@ namespace DateTimeClass {
 
 
     // 24-hour time:  hh:mm.ss
-    protected fullTime(t: DateTime): string {
+    public fullTime(t: DateTime): string {
         return this.leftZeroPadTo(t.hour, 2) + ":" + this.leftZeroPadTo(t.minute, 2) + "." + this.leftZeroPadTo(t.second, 2)
     }
 
     // Full year: yyyy-mm-dd
-    protected fullYear(t: DateTime, y: YearFormat = 0): string {
+    public fullYear(t: DateTime, y: YearFormat = 0): string {
         return this.leftZeroPadTo(t.year + y, 4) + "-" + this.leftZeroPadTo(t.month, 2) + "-" + this.leftZeroPadTo(t.day, 2)
     }
 
