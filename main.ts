@@ -429,7 +429,7 @@ namespace DateTimeClass {
      * @param second the second (0-59)
      */
     //% blockid=datetimeclass_set24hrtime
-    //% block=" $this set time from 24-hour time $times|| to datetime kind $kindn"
+    //% block=" $this set time from 24-hour time $times"
     //% this.shadow=variables_get this.defl=myDateTime
     //% times.shadow=datetimeclass_timeshadow
     //% weight=90
@@ -647,7 +647,7 @@ namespace DateTimeClass {
      * Get all values of time as numbers.  
      */
     //% blockid=datetimeclass_alldatetimetogetinstatement
-    //% block=" $this date and time from kind $kindn as numbers $hour:$minute.$second on $month/$day/$year" advanced=true
+    //% block=" $this date and time from $hour:$minute.$second on $month/$day/$year" advanced=true
     //% this.shadow=variables_get this.defl=myDateTime
     //% handlerStatement
     //% draggableParameters="reporter"
@@ -663,7 +663,7 @@ namespace DateTimeClass {
      * @param format the format to use
      */
     //% blockid=datetimeclass_time2format
-    //% block=" $this time as $format|| from datetime kind $kindn"
+    //% block=" $this time as $format"
     //% this.shadow=variables_get this.defl=myDateTime
     //% weight=70
     public time(format: TimeFormat): string {
@@ -712,7 +712,7 @@ namespace DateTimeClass {
      * @param format the format to use
      */
     //% blockid=datetimeclass_datemonth2format 
-    //% block=" $this month name as $format|| from datetime kind $kindn"
+    //% block=" $this month name as $format"
     //% this.shadow=variables_get this.defl=myDateTime
     //% weight=20
     public nameMonth(format: MonthNameFormat): string {
