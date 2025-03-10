@@ -230,10 +230,10 @@ namespace DateTimeClass {
             this.lastUpdateMinute = 100, this.lastUpdateHour = 100, this.lastUpdateDay = 100
             this.myDatetime = { month: 0, day: 0, year: 0, hour: 0, minute: 0, second: 0, dayOfYear: 0 }
             this.TIME_AND_DATE_EVENT = 94, this.TIME_AND_DATE_NEWMINUTE = 1, this.TIME_AND_DATE_NEWHOUR = 2, this.TIME_AND_DATE_NEWDAY = 3
-            this.init()
+            this.run()
         }
 
-        protected init() {
+        protected run() {
         /* 
         This ensures that "time" is checked periodically and event handlers are called.  
         */
