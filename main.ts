@@ -424,9 +424,9 @@ namespace DateTimeClass {
 
     /**
      * Set the time using 24-hour format. 
-     * hour the hour (0-23)
-     * minute the minute (0-59)
-     * second the second (0-59)
+     *  hour the hour (0-23)
+     *  minute the minute (0-59)
+     *  second the second (0-59)
      */
     //% blockid=datetimeclass_set24hrtime
     //% block=" $this set time from 24-hour time $times"
@@ -446,9 +446,9 @@ namespace DateTimeClass {
 
     /**
      * Set the date
-     * month the month 1-12
-     * day the day of the month 1-31
-     * the year 2020-2050
+     *  month the month 1-12
+     *  day the day of the month 1-31
+     *  the year 2020-2050
      */
     //% blockid=datetimeclass_setdate
     //% block=" $this set date to $dates"
@@ -468,10 +468,10 @@ namespace DateTimeClass {
 
     /**
      * Set the time using am/pm format
-     * hour the hour (1-12)
-     * minute the minute (0-59)
-     * second the second (0-59)
-     * ampm morning or night
+     *  hour the hour (1-12)
+     *  minute the minute (0-59)
+     *  second the second (0-59)
+     *  ampm morning or night
      */
     //% block=datetimeclass_settime
     //% block=" $this set time to $times $ampm"
@@ -493,8 +493,8 @@ namespace DateTimeClass {
 
     /**
      * Advance the time by the given amount, which cause "carries" into other aspects of time/date.  Negative values will cause time to go back by the amount.
-     * @param amount the amount of time to add (or subtract if negative).  To avoid "carries" use withTime blocks
-     * @param unit the unit of time
+     *  amount the amount of time to add (or subtract if negative).  To avoid "carries" use withTime blocks
+     *  unit the unit of time
      */
     //% blockid=datetimeclass_advancesetdatetime
     //% block=" $this advance time/date by $amount $unit" advanced=true
@@ -660,7 +660,7 @@ namespace DateTimeClass {
 
     /**
      * Current time as a string in the format
-     * @param format the format to use
+     *  format the format to use
      */
     //% blockid=datetimeclass_time2format
     //% block=" $this time as $format"
@@ -709,7 +709,7 @@ namespace DateTimeClass {
 
     /**
      * Current date month name as a string in the format name
-     * @param format the format to use
+     *  format the format to use
      */
     //% blockid=datetimeclass_datemonth2format 
     //% block=" $this month name as $format"
@@ -733,7 +733,7 @@ namespace DateTimeClass {
 
     /**
      * Current date week name as a string in the format name
-     * @param format the format to use
+     *  format the format to use
      */
     //% blockid=datetimeclass_dateweek2format
     //% block=" $this week name as $format"
@@ -761,7 +761,7 @@ namespace DateTimeClass {
 
     /**
      * Current date as a string in the format
-     * @param format the format to use
+     *  format the format to use
      */
     //% blockid=datetimeclass_date2format
     //% block=" $this date as $format for year in $y"
