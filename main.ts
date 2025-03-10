@@ -211,13 +211,6 @@ namespace DateTimeClass {
     // Ex: By Feb 1st (2nd month / index 2), 31 days of Jan are completed. 
     const cdoy: DayOfYear[] = [0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365]
 
-    //% blockid=datetimeclass_createmydatetimeasclass
-    //% block="create empty datetime"
-    //% weight=130
-    export function createMyDatetime() {
-        return new DatetimeObject()
-    }
-
     // ********* Time Calculation / Management ************************
     export class DatetimeObject {
         public myDatetime: DateTime; public myDate: Date
@@ -869,6 +862,13 @@ namespace DateTimeClass {
 
     // ********************************************************
 }
+
+    //% blockid=datetimeclass_createmydatetimeasclass
+    //% block="create empty datetime"
+    //% weight=130
+    export function createMyDatetime() {
+        return new DatetimeObject()
+    }
 }
 
 
