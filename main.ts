@@ -45,9 +45,6 @@ namespace DateTimeClass {
 //% color="#AA278D"  icon="\uf017"
 namespace DateTimeClass {
 
-    function background(thendo: () => void) {
-        control.runInBackground(thendo)
-    }
 
 
     // ********* Enumerations for parameter types ************************
@@ -240,8 +237,7 @@ namespace DateTimeClass {
         /* 
         This ensures that "time" is checked periodically and event handlers are called.  
         */
-        background( function() {
-        while (true) {
+        game.onUpdateInterval(864, function () {
             // Only run about every 2 s;  Micro:bit uses a ticker with a 32kHz period, so the count should increase by about 65kHz for arcade or etc.
             const cpuTime = this.cpuTimeInSeconds()
             const t = this.timeFor(cpuTime)
@@ -261,8 +257,6 @@ namespace DateTimeClass {
                 control.raiseEvent(this.TIME_AND_DATE_EVENT, this.TIME_AND_DATE_NEWDAY)
                 this.lastUpdateDay = t.day
             }
-            pause(864)
-        }
         })
     }
 
