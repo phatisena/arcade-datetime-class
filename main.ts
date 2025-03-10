@@ -503,7 +503,8 @@ namespace DateTimeClass {
      * @param unit the unit of time
      */
     //% blockid=datetimeclass_advancesetdatetime
-    //% block="advance time/date by $amount $unit" advanced=true
+    //% block=" $this advance time/date by $amount $unit" advanced=true
+    //% this.shadow=variables_get this.defl=myDateTime
     //% weight=50
     public advanceBy(amount: number, unit: TimeUnit) {
         const units = [0, 1, 60 * 1, 60 * 60 * 1, 24 * 60 * 60 * 1]
@@ -518,7 +519,8 @@ namespace DateTimeClass {
      * get day since from date
      */
     //% blockid=datetimeclass_datetodaysince
-    //% block="day since as $dates"
+    //% block=" $this day since as $dates"
+    //% this.shadow=variables_get this.defl=myDateTime
     //% dates.shadow=datetime_dateshadow
     //% weight=20
     public dateToDaySince(dates: dates): SecondsCount {
@@ -534,7 +536,8 @@ namespace DateTimeClass {
      * get time since from date and time
      */
     //% blockid=datetimeclass_datetodaysince
-    //% block="time since as $dates and $times"
+    //% block=" $this time since as $dates and $times"
+    //% this.shadow=variables_get this.defl=myDateTime
     //% dates.shadow=datetimeclass_dateshadow
     //% times.shadow=datetimeclass_timeshadow
     //% weight=20
@@ -555,6 +558,7 @@ namespace DateTimeClass {
      */
     //% blockid=datetimeclass_date2dayweek
     //% block=" $this day of week for $dates" advanced=true
+    //% this.shadow=variables_get this.defl=myDateTime
     //% dates.shadow=datetimeclass_dateshadow
     //% weight=40
     public dateToDayOfWeek(dates: dates): Weekday {
@@ -573,6 +577,7 @@ namespace DateTimeClass {
      */
     //% blockid=datetimeclass_date2dayyear
     //% block=" $this day of year for $dates" advanced=true
+    //% this.shadow=variables_get this.defl=myDateTime
     //% dates.shadow=datetimeclass_dateshadow
     //% weight=30
     public dateToDayOfYear(dates: dates): DayOfYear {
@@ -621,7 +626,8 @@ namespace DateTimeClass {
      * create calendar table from date
      */
     //% blockid=datetimeclass_datetable
-    //% block="calendar table as $idate"
+    //% block=" $this calendar table as $idate"
+    //% this.shadow=variables_get this.defl=myDateTime
     //% idate.shadow=datetimeclass_dateshadow
     //% weight=15
     public dateAsTableList(idate: dates): number[] {
