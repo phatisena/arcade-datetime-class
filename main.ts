@@ -42,7 +42,7 @@ namespace DateTimeClass {
  * @author Bill Siever
  */
 //% block="Time and Date with Class"
-//% color="#AA278D"  icon="\uf017"
+//% color="#3452eb"  icon="\uf017"
 namespace DateTimeClass {
 
 
@@ -290,10 +290,12 @@ namespace DateTimeClass {
         return (((this.dateToDayOfYear(datevalue(m, d, y)) - 1) * 24 + hh) * 60 + mm) * 60 + ss
     }
 
-    public dateSinceFor(dateSince: SecondsCount): Date {
+    public dateSinceFor(dateSince: SecondsCount, offsetSince: SecondsCount=0, offsetYear: Year=0): Date {
         // Find elapsed years by counting up from start year and subtracting off complete years
         let startDateCount = dateSince
+        if (offsetSince > 0) startDateCount -= offsetSince
         let y = 1
+        if (offsetYear > 0) y = offsetYear
         let leap = this.isLeapYear(y)
         while ((!leap && startDateCount > 365) || (startDateCount > 366)) {
             if (leap) {
@@ -351,10 +353,12 @@ namespace DateTimeClass {
         return { month: ddmm.month, day: ddmm.day, year: y, hour: hoursFromStartOfDay, minute: minutesFromStartOfHour, second: secondsSinceStartOfMinute, dayOfYear: daysFromStartOfYear }
     }
 
-    public timeSinceFor(timeSince: SecondsCount): DateTime {
+    public timeSinceFor(timeSince: SecondsCount, offsetSince: SecondsCount=0, offsetYear: Year=0): DateTime {
         let sSinceStartOfYear = timeSince
+        if (offsetSince > 0) sSinceStartOfYear -= offsetSince
         // Find elapsed years by counting up from start year and subtracting off complete years
         let y = 1
+        if (offsetYear > 0) y = offsetYear
         let leap = this.isLeapYear(y)
         while ((!leap && sSinceStartOfYear > 365 * 24 * 60 * 60) || (sSinceStartOfYear > 366 * 24 * 60 * 60)) {
             if (leap) {
@@ -417,9 +421,7 @@ namespace DateTimeClass {
 
     /**
      * Set the time using 24-hour format. 
-     *  hour the hour (0-23)
-     *  minute the minute (0-59)
-     *  second the second (0-59)
+     * @param time from hour the hour (0-23), minute the minute (0-59), second the second (0-59)
      */
     //% blockid=datetimeclass_set24hrtime
     //% block=" $this set time from 24-hour time $times"
@@ -439,9 +441,7 @@ namespace DateTimeClass {
 
     /**
      * Set the date
-     *  month the month 1-12
-     *  day the day of the month 1-31
-     *  the year 2020-2050
+     * @param date from month the month 1-12, day the day of the month 1-31, the year 2020-2050
      */
     //% blockid=datetimeclass_setdate
     //% block=" $this set date to $dates"
@@ -461,10 +461,8 @@ namespace DateTimeClass {
 
     /**
      * Set the time using am/pm format
-     *  hour the hour (1-12)
-     *  minute the minute (0-59)
-     *  second the second (0-59)
-     *  ampm morning or night
+     * @param time from hour the hour (1-12), minute the minute (0-59), second the second (0-59)
+     * @param ampm morning or night
      */
     //% block=datetimeclass_settime
     //% block=" $this set time to $times $ampm"
@@ -486,8 +484,8 @@ namespace DateTimeClass {
 
     /**
      * Advance the time by the given amount, which cause "carries" into other aspects of time/date.  Negative values will cause time to go back by the amount.
-     *  amount the amount of time to add (or subtract if negative).  To avoid "carries" use withTime blocks
-     *  unit the unit of time
+     * @param amount the amount of time to add (or subtract if negative).  To avoid "carries" use withTime blocks
+     * @param unit the unit of time
      */
     //% blockid=datetimeclass_advancesetdatetime
     //% block=" $this advance time/date by $amount $unit" advanced=true
@@ -504,6 +502,7 @@ namespace DateTimeClass {
 
     /**
      * get day since from date
+     * @param date of month day year
      */
     //% blockid=datetimeclass_datetodaysince
     //% block=" $this day since as $dates"
@@ -521,6 +520,8 @@ namespace DateTimeClass {
 
     /**
      * get time since from date and time
+     * @param date of month day year
+     * @param time of hour minute second
      */
     //% blockid=datetimeclass_datetodaysince
     //% block=" $this time since as $dates and $times"
@@ -541,7 +542,7 @@ namespace DateTimeClass {
 
     /**
      * Get the Day of the week  
-     *  0=>Monday, 1=>Tuesday, etc.
+     * @param 0=>Monday, 1=>Tuesday, etc.
      */
     //% blockid=datetimeclass_date2dayweek
     //% block=" $this day of week for $dates" advanced=true
@@ -560,7 +561,7 @@ namespace DateTimeClass {
 
     /**
      * Get the Day of the year  
-     *  Jan 1 = 1, Jan 2=2, Dec 31 is 365 or 366
+     * @param Jan 1 = 1, Jan 2=2, Dec 31 is 365 or 366
      */
     //% blockid=datetimeclass_date2dayyear
     //% block=" $this day of year for $dates" advanced=true
@@ -579,8 +580,12 @@ namespace DateTimeClass {
         return dayOfYear
     }
 
+    /**
+     * calculate my age from birthdate in currentdate
+     * @param your birthdate to calculating your age from currentdate
+     */
     //% blockId=datetimeclass_mydatetoage
-    //% block =" $this get age from birthdate by $idate in current date"
+    //% block=" $this get age from birthdate by $idate in current date"
     //% this.shadow=variables_get this.defl=myDateTime
     //% idate.shadow=datetimeclass_dateshadow
     //% weight=14
@@ -603,14 +608,15 @@ namespace DateTimeClass {
                 ageCount++
             }
             curY++, curLeap = this.isLeapYear(curY)
-            curDsince += (curLeap) ? 366 : 365, curDate = this.dateSinceFor(curDsince)
+            curDsince += (curLeap) ? 366 : 365, curDate = this.dateSinceFor(curDsince,DsinceMin,DateMin.year)
         }
         ageCount--
         return ageCount
     }
 
     /**
-     * create calendar table from date
+     * create raw calendar table from date
+     * @param date from current date
      */
     //% blockid=datetimeclass_datetable
     //% block=" $this calendar table as $idate"
@@ -653,7 +659,7 @@ namespace DateTimeClass {
 
     /**
      * Current time as a string in the format
-     *  format the format to use
+     * @param format the format to use
      */
     //% blockid=datetimeclass_time2format
     //% block=" $this time as $format"
@@ -702,7 +708,7 @@ namespace DateTimeClass {
 
     /**
      * Current date month name as a string in the format name
-     *  format the format to use
+     * @param format the format to use
      */
     //% blockid=datetimeclass_datemonth2format 
     //% block=" $this month name as $format"
@@ -726,7 +732,7 @@ namespace DateTimeClass {
 
     /**
      * Current date week name as a string in the format name
-     *  format the format to use
+     * @param format the format to use
      */
     //% blockid=datetimeclass_dateweek2format
     //% block=" $this week name as $format"
@@ -754,7 +760,8 @@ namespace DateTimeClass {
 
     /**
      * Current date as a string in the format
-     *  format the format to use
+     * @param format the format to use
+     * @param year type of year format to use
      */
     //% blockid=datetimeclass_date2format
     //% block=" $this date as $format for year in $y"
@@ -789,7 +796,8 @@ namespace DateTimeClass {
     }
 
     /**
-     * Current date and time in a timestamp format (YYYY-MM-DD HH:MM.SS).  
+     * Current date and time in a timestamp format (YYYY-MM-DD HH:MM.SS). 
+     * @param year type from year format to use
      */
     //% blockid=datetimeclass_dateandtime 
     //% block=" $this date and time stamp for year in $y"
