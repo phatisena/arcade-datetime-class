@@ -39,7 +39,7 @@ namespace DateTimeClass {
  * 16MHz clock, which is crystal based and should have an accuracy near 10 part per million, 
  * or about 0.864 seconds/day.
  *
- * @author Bill Siever
+ * @cradit Bill Siever
  */
 //% block="Time and Date with Class"
 //% color="#3452eb"  icon="\uf017"
