@@ -467,7 +467,7 @@ namespace DateTimeClass {
     //% block=datetimeclass_settime
     //% block=" $this set time to $times $ampm"
     //% this.shadow=variables_get this.defl=myDateTime
-    //% times.shadow=_halftimeshadow
+    //% times.shadow=datetimeclass_halftimeshadow
     //% inlineInputMode=inline
     //% weight=100
     public set12HourTime(times: times, ampm: MornNight) {
@@ -507,7 +507,7 @@ namespace DateTimeClass {
     //% blockid=datetimeclass_datetodaysince
     //% block=" $this day since as $dates"
     //% this.shadow=variables_get this.defl=myDateTime
-    //% dates.shadow=datetime_dateshadow
+    //% dates.shadow=datetimeclass_dateshadow
     //% weight=20
     public dateToDaySince(dates: dates): SecondsCount {
         let uyear = dates.year, umonth = dates.month, uday = dates.day
