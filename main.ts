@@ -226,7 +226,7 @@ namespace DateTimeClass {
             this.run()
         }
 
-        protected run() {
+        private run() {
         /* 
         This ensures that "time" is checked periodically and event handlers are called.  
         */
@@ -253,7 +253,7 @@ namespace DateTimeClass {
         })
     }
 
-    protected isLeapYear(y: Year): boolean {
+    private isLeapYear(y: Year): boolean {
         // The /400 and /100 rules don't come into play until 2400 and 2300 or 0100.  We can ignore them here
         // Here's the code for accurate handling of leap years:
         return (y % 400 == 0 || (y % 100 != 0 && y % 4 == 0))
