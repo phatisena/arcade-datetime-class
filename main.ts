@@ -870,12 +870,41 @@ namespace DateTimeClass {
 
     // ********************************************************
 }
-
+    /**
+     * create value as datetime object value
+     */
     //% blockid=datetimeclass_createmydatetimeasclass
     //% block="create empty datetime"
+    //% blockSetVariable="myDateTime"
     //% weight=130
     export function createMyDatetime() {
         return new DatetimeObject()
+    }
+
+    /**
+     * get your datetime data to storing to Sprite
+     * @param datetimeobj the datetimedata
+     * @param sprite with data to storing the datetimedata
+     */
+    //% blockid=datetimeclass_datetimestoretosprite
+    //% block="store $mydatetime into $spr"
+    //% mydatetime.shadow=variables_get mydatetime.defl=myDateTime
+    //% spr.shadow=variables_get spr.defl=mySprite
+    //% weight=128
+    export function myDatetimeToSprite(mydatetime: DatetimeObject, spr: Sprite) {
+        spr.data["__datetimeobj__"] = mydatetime as DatetimeObject
+    }
+
+    /**
+     * get sprite to read my datetimedata
+     * @param sprite with datetimedata to read
+     */
+    //% blockid=datetimeclass_getspritetoreadmydatetimedata
+    //% block="load datetimedata from $spr"
+    //% spr.shadow=variables_get spr.defl=mySprite
+    //% weight=126
+    export function spriteToReadMyDatetime(spr: Sprite) {
+        return (spr.data["__datetimeobj__"])?spr.data["__datetimeobj__"]:createMyDatetime() as DatetimeObject
     }
 }
 
